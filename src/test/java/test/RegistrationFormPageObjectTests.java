@@ -57,19 +57,18 @@ public class RegistrationFormPageObjectTests extends TestBase {
         step("Submit form", () -> {
             registration.submit();
         });
-
-
-        $(".modal-title").shouldHave(text("Thanks for submitting the form"));
-        $x("//td[text()= 'Student Name']").parent().shouldHave(text(student.getFirstName() + " " + student.getLastName()));
-        $x("//td[text()='Student Email']").parent().shouldHave(text(student.getEmail()));
-        $x("//td[text()='Gender']").parent().shouldHave(text(student.getGender()));
-        $x("//td[text()='Mobile']").parent().shouldHave(text(student.getMobile()));
-        $x("//td[text()='Date of Birth']").parent().shouldHave(text(calendar.getDay() + " " + calendar.getMonth() + "," + calendar.getYear()));
-        $x("//td[text()='Subjects']").parent().shouldHave(text(student.getSubjects()));
-        $x("//td[text()='Hobbies']").parent().shouldHave(text(student.getHobbies()));
-        $x("//td[text()='Picture']").parent().shouldHave(text(student.getFileName()));
-        $x("//td[text()='Address']").parent().shouldHave(text(student.getCurrentAddress()));
-        $x("//td[text()='State and City']").parent().shouldHave(text(student.getState() + " " + student.getCity()));
-
+        step("Verify successful form submit", () -> {
+            $(".modal-title").shouldHave(text("Thanks for submitting the form"));
+            $x("//td[text()= 'Student Name']").parent().shouldHave(text(student.getFirstName() + " " + student.getLastName()));
+            $x("//td[text()='Student Email']").parent().shouldHave(text(student.getEmail()));
+            $x("//td[text()='Gender']").parent().shouldHave(text(student.getGender()));
+            $x("//td[text()='Mobile']").parent().shouldHave(text(student.getMobile()));
+            $x("//td[text()='Date of Birth']").parent().shouldHave(text(calendar.getDay() + " " + calendar.getMonth() + "," + calendar.getYear()));
+            $x("//td[text()='Subjects']").parent().shouldHave(text(student.getSubjects()));
+            $x("//td[text()='Hobbies']").parent().shouldHave(text(student.getHobbies()));
+            $x("//td[text()='Picture']").parent().shouldHave(text(student.getFileName()));
+            $x("//td[text()='Address']").parent().shouldHave(text(student.getCurrentAddress()));
+            $x("//td[text()='State and City']").parent().shouldHave(text(student.getState() + " " + student.getCity()));
+        });
     }
 }

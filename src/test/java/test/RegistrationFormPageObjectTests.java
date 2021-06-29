@@ -28,7 +28,6 @@ public class RegistrationFormPageObjectTests extends TestBase {
             faker.address().fullAddress(),
             "load.txt");
 
-
     @Test
     void fillFormTest() {
         step("Open Student Registration Form", () -> {

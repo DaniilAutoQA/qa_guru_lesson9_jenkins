@@ -31,6 +31,7 @@ public class SystemPropertiesTests {
     @Test
     @Tag("terminal")
     void readTerminalFromProperties(){
+        System.setProperty("browser","FF");
         System.out.println(System.getProperty("browser","FF"));
         System.out.println(System.getProperty("version", "91"));
     }

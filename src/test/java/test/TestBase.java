@@ -2,6 +2,7 @@ package test;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.Credentials;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -15,13 +16,17 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class TestBase {
     @BeforeAll
     static void setup() {
+        String login = "user1";
+        String password = "1234";
+//        String url = "selenoid.autotests.cloud/wd/hub/";
+        String url = System.getProperty("remoteUrl");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.startMaximized = true;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = String.format( "https://%s:%s@%s", Credentials.credentials.login(), Credentials.credentials.password(), url);
     }
 
     public static String getSessionId() {
